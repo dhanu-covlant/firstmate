@@ -60,8 +60,10 @@
 # never re-read, stays fresh, and a stale error beside it is cleared once.
 # The first genuine failure in an episode records failure_streak=1 without
 # printing. A consecutive failure advances the streak to 2 and prints the
-# unavailable line once; later failures stay at 2 and remain quiet. A
-# successful read ends the episode.
+# unavailable line once; later failures stay at 2 and remain quiet. Owners of
+# a shared URL continue from their highest streak, and an error recorded
+# without failure_streak counts as already reported. A successful read ends
+# the episode.
 # FM_CONTRIBUTIONS_NOW supplies an ISO UTC clock for tests, otherwise UTC now.
 # FM_CONTRIBUTIONS_READY_LABEL selects the equivalent triage label, default
 # ready-for-pr. Labels are matched case-insensitively and exactly.
