@@ -1,0 +1,22 @@
+
+=== S1 healthy real read ===
+--- poll healthy (real gh)                      rc=0 stdout=[]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:40Z","error":null,"failure_streak":null,"state":"open","head":"102726fc7b"}
+
+=== S2 transient failure then recovery ===
+--- poll transient failure (bad token)          rc=0 stdout=[contributions: observation unavailable for https://github.com/kunchenguid/firstmate/pull/6016]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:45Z","error":"forge observation unavailable or changed during read","failure_streak":null,"state":"open","head":"102726fc7b"}
+--- poll recovery (real gh)                     rc=0 stdout=[]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:47Z","error":null,"failure_streak":null,"state":"open","head":"102726fc7b"}
+
+=== S3 persistent failure escalates once ===
+--- poll failure #1                             rc=0 stdout=[contributions: observation unavailable for https://github.com/kunchenguid/firstmate/pull/6016]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:50Z","error":"forge observation unavailable or changed during read","failure_streak":null,"state":"open","head":"102726fc7b"}
+--- poll failure #2                             rc=0 stdout=[]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:51Z","error":"forge observation unavailable or changed during read","failure_streak":null,"state":"open","head":"102726fc7b"}
+--- poll failure #3                             rc=0 stdout=[]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:53Z","error":"forge observation unavailable or changed during read","failure_streak":null,"state":"open","head":"102726fc7b"}
+--- poll failure #4                             rc=0 stdout=[]
+{"url":"https://github.com/kunchenguid/firstmate/pull/6016","checked_at":"2026-09-28T15:41:54Z","error":"forge observation unavailable or changed during read","failure_streak":null,"state":"open","head":"102726fc7b"}
+
+=== S4 recovery ends episode; new episode deferred again ===
